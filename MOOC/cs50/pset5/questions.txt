@@ -1,0 +1,68 @@
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
+Pneumonoultramicroscopicsilicovolcanoconiosis is an English word that refers to 
+a lung disease that is otherwise known as silicosis. It is the longest word in 
+the English language published in a dictionary, the Oxford English Dictionary.
+
+1.  According to its man page, what does getrusage do?
+"getrusage()" takes two arguments--int getrusage(int who, struct rusage *usage),
+saves resource usage measures for it's fisrt argument--who in it's second argument.
+
+2.  Per that same man page, how many members are in a variable of type struct rusage?
+16.
+
+3.  Why do you think we pass before and after by reference (instead of by value)
+to calculate, even though we’re not changing their contents?
+Ward of copying for local varibles to save time and memory. 
+
+4.  Explain as precisely as possible, in a paragraph or more, how main goes about
+reading words from a file. In other words, convince us that you indeed understand
+how that function’s for loop works.
+First main creates some varibles--int index, misspellings, words and char word[LENGTH+1].
+Then, in the for loop, we have a int c keep in track of each charactor until the
+end of the file.
+If c is a alphabetic character, or c is "'" and not in the beginning of a word, then
+c is a char in a word, we save it in word[index], and index++, to check the next char
+in the file.But if index > LENGTH(45), the longest English word length, the string 
+saved in char *word is not a English word ,so skip the rest alphabetic characters,
+set index = 0 and check next word.
+If c is not a char but a digit, just skip the rest alphanumeric characters, set
+index = 0 and check next word.
+If c is not a  alphanumeric character and index > 0, we know the string saved in
+char *word is a word, so add a '\0' and let char *word be a legal C.update counter
+words++ ,check the word and calutlate time_check. If misspelled, update misspelled
+and print the word.Then set index = 0 and check next word.
+
+5.  Why do you think we used fgetc to read each word’s characters one at a time 
+rather than use fscanf with a format string like "%s" to read whole words at a time? 
+Put another way, what problems might arise by relying on fscanf alone?
+We are not sure what character the file use to separate words, maybe a '.', maybe
+a ',', and even maybe a '-', fscanf can't deal with these different alphanumeric
+characters. 
+
+6.  Why do you think we declared the parameters for check and load as const?
+We shouldn't change the parameters in check and load. Declaring the parameters for
+check and load as const can protect our data.
+
+7.  What data structure(s) did you use to implement your spell-checker? 
+Be sure not to leave your answer at just "hash table," "trie," or the like. 
+Expound on what’s inside each of your "nodes."
+
+I tried both hash table and trie.
+In hash table, there are pointers to single linked list.
+In each single linked list node, there is a char* value and a pointer to next node.
+The node value equals to a legal word.
+
+Inside each trie node,there is a bool value to represent whether this node is legal.
+Besides, a pointer table inside contains 27 trie node pointer which means 'a-z'and'\''.
+
+8.  How slow was your code the first time you got it working correctly?
+It costs about 1.5 times time than staff version.
+
+9.  What kinds of changes, if any, did you make to your code in order to improve its performance?
+I try to change the size of the hashtable, but it doesn't make sense.
+
+10. Do you feel that your code has any bottlenecks that you were not able to chip away at?
+I can absolutely feel! Your code works more efficient, which means there must be
+bottlenecks in my code.
+The check and size time are almost the same, but my load and unload time is longer, this is 
+the bottlenecks, but I can not chip away at it.

@@ -1,0 +1,19 @@
+body
+{
+    background-color:#d0e4fe;
+}
+tr
+{
+    text-align:center;
+    height:30px;
+}
+th
+{
+    color:white;
+    background-color:black;
+}
+td
+{
+    background-color:white;
+    width:50px;
+}

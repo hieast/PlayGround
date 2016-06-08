@@ -1,0 +1,47 @@
+1.1 
+All right except one.In c4droid char charVar will always assign to 0 before _Bool.
+And after I comment out the _Bool type variable, it works well.
+
+1.2
+Int           True
+Calloc        True
+floating      True
+ReInitialize  True
+char          False
+Xx            True
+_1312         True
+_             True
+6_05          False
+aplha_beta_routine True
+z             True
+A$            False
+
+1.3     True
+123.456 True
+0001    True
+0Xab05  True
+123.5e2 True
+98.6F   True
+0996    False Digits 8 and 9 invalid in octal constant  
+1234uL  True
+1.234L  True
+0XABCDEFL   True
+0x10.5  False Decimal point not valid in integer constant
+0xFFFF  True
+0L      True
+.0001   True
+98.7U   True Unsigned qualifier only valid for integers
+-12E-12 True
+1.2Fe-7 False Can't use F and e together
+197u    True
+0xabcu  True
+0X0Gl   False G is not a valid hexadecimal digit
+123L    True
+-597.25 True
++12     True
+17777s  False s is not a valid qualifier
+07777   True
+15,000  False Commas not allowed in constants
+100U    True
++123    True
+    

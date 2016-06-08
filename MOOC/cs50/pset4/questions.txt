@@ -1,0 +1,90 @@
+0.  How many different colors does each format support?
+BMP:32-bit per pixel format supports 4,294,967,296 distinct colors.
+GIF:8-bit per pixel supports 2^8 = 256 distinct colors.
+JPEG:24-bit per pixel supports 2^24 = 16,777,216 distinct colors.
+PNG:32-bit per pixel format supports 4,294,967,296 distinct colors.
+
+1.  Which of the formats supports animation?
+GIF
+
+2.  What’s the difference between lossy and lossless compression?
+lossy compression does not save all info of the original file 
+while lossless compression save them all.
+
+3.  Which of these formats is lossy-compressed?
+JPEG
+
+4.  What happens, technically speaking, when a file is deleted on a FAT file system?
+A link to this file in File Allocation Table has been deleted. The actual file
+data is never touched.
+
+5.  What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
+Fill every addressable block with ASCII NUL bytes (zeroes)
+
+6.  What’s stdint.h?
+
+The C99 standard includes definitions of several new integer types to enhance the portability of programs.
+The new types are especially useful in embedded environments where hardware usually supports only several types 
+and that support varies between different environments. 
+All new types are defined in <inttypes.h> header and also are available at <stdint.h> header.
+
+7.  What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+uint8_t means unsigned 8 bit int, 
+uint32_t means unsigned 32 bit int, 
+int32_t means signed 32 bit int, 
+uint16_t means un signed 16 bit int.
+
+8.  How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+BYTE 1 byte;
+DWORD 4 bytes;
+LONG 4 bytes;
+WORD 2 bytes.
+
+9.  What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? 
+in ASCII:'B''M'
+in decimal:66 77
+in hexadecimal:0x42 0x4d
+
+10. What’s the difference between bfSize and biSize?
+bfSize is the size of this bmp file.
+biSize is the size of BITMAPINFOHEADE.
+
+11. What does it mean if biHeight is negative?
+If biHeight is positive, the image is bottom-up.
+If biHeight is negative, the image is top-down.
+
+12. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+biBitCount:
+The number of bits-per-pixel. The biBitCount member of the BITMAPINFOHEADER structure
+determines the number of bits that define each pixel and the maximum number of colors in the bitmap.
+
+13. Why might fopen return NULL in copy.c:37?
+e.g., the file user input is not exist, or the program is not allowed to read the file.
+
+14. Why is the third argument to fread always 1 in our code?
+This argument means it read 1 elements of data, prevent read pedding between lines(if exist).
+
+15. What value does copy.c:70 assign padding if bi.biWidth is 3?
+3.
+the RGBTRIPLE is defined in bmp.h:
+typedef struct
+{
+    BYTE  rgbtBlue;
+    BYTE  rgbtGreen;
+    BYTE  rgbtRed;
+} __attribute__((__packed__))
+RGBTRIPLE;
+RGBTRIPLE = 3 BYTE
+int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+            =  (4 - (3 * 3) % 4) % 4 = 3 % 4 = 3.
+
+16. What does fseek do?
+int fseek(FILE * stream, long offset, int whence);
+The fseek() function sets the file position indicator for the stream pointed to by stream. 
+
+17. What is SEEK_CUR
+It means the offset is relative to the current position indicator.
+
+18. Whodunit?
+Set each pixel's rgbtBlue and rgbtGreen eaqul to it's rgbtRed, and you will get a grayscale image.
+I'm sure it's a man, but not sure who he is.I'm not good at distinguishing westerners.
